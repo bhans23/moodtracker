@@ -3,16 +3,26 @@ import "../css/Tracker.css";
 
 const Tracker = () => {
   const [moodValue, setMoodValue] = useState(0);
-  const [currentDate, setCurrentDate] = useState("Today's Date");
-  const [currentTime, setcurrentTime] = useState("Current Time");
+  const [moodList, setMoodList] = useState([]);
+  // const [currentDate, setCurrentDate] = useState("Today's Date");
+  // const [currentTime, setcurrentTime] = useState("Current Time");
 
-  const handleSubmit = () => {};
+  const handleSubmit = e => {
+    e.prevenDefault();
+    setMoodList({
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      mood: moodValue
+    });
+    console.log(moodList.date);
+  };
 
   const handleChange = e => {
+    // const dayTime = new Date();
+
     setMoodValue(e.target.value);
-    const dayTime = new Date();
-    setCurrentDate(dayTime.toLocaleDateString());
-    setcurrentTime(dayTime.toLocaleTimeString());
+    // setCurrentDate(dayTime.toLocaleDateString());
+    // setcurrentTime(dayTime.toLocaleTimeString());
   };
 
   return (
@@ -21,9 +31,7 @@ const Tracker = () => {
       <p>This is going to be the best mood tracker...maybe...perhaps</p>
       <div className="slideContainer">
         <h3>{moodValue}</h3>
-        <span>
-          {currentTime} {currentDate}
-        </span>
+
         <form submit={handleSubmit}>
           <input
             type="range"
