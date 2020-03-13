@@ -10,6 +10,7 @@ const Tracker = () => {
     setMoodList(moodList => [
       ...moodList,
       {
+        mood: moodValue,
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString()
       }
