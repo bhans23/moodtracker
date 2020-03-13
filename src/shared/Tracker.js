@@ -6,7 +6,7 @@ const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
   const handleSubmit = e => {
-    e.prevenDefault();
+    e.preventDefault();
     setMoodList(moodList => [
       ...moodList,
       {
@@ -15,7 +15,6 @@ const Tracker = () => {
         time: new Date().toLocaleTimeString()
       }
     ]);
-    console.log(moodList.date);
   };
 
   const handleChange = e => {
@@ -42,7 +41,6 @@ const Tracker = () => {
           <button type="submit">submit</button>
         </form>
       </div>
-      {console.log(moodList[0])}
     </div>
   );
 };
