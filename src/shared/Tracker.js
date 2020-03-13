@@ -4,7 +4,6 @@ import "../css/Tracker.css";
 const Tracker = () => {
   const [moodValue, setMoodValue] = useState(0);
   const [moodList, setMoodList] = useState([]);
- 
 
   const handleSubmit = e => {
     e.prevenDefault();
@@ -19,10 +18,7 @@ const Tracker = () => {
   };
 
   const handleChange = e => {
-   
-    setMoodList(moodList => [...moodList, { mood: moodValue }]);
     setMoodValue(e.target.value);
-   
   };
 
   return (
