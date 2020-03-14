@@ -1,7 +1,7 @@
 import React from "react";
 
-const MoodList = ({ moodList }) => {
-  const { mood, date, time } = moodList;
+const MoodItem = ({ moodObject }) => {
+  const { mood, date, time } = moodObject;
 
   return (
     <div>
@@ -12,4 +12,4 @@ const MoodList = ({ moodList }) => {
   );
 };
 
-export default MoodList;
+export default MoodItem;

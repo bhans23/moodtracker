@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MoodList from "./MoodList";
+import MoodItem from "./MoodItem";
 import "../css/Tracker.css";
 
 const Tracker = () => {
@@ -42,8 +42,8 @@ const Tracker = () => {
           <button type="submit">submit</button>
         </form>
         <div className="moodLists">
-          {moodList.map(moodList => (
-            <MoodList moodList={moodList} />
+          {moodList.map(moodObject => (
+            <MoodItem moodObject={moodObject} />
           ))}
         </div>
       </div>
