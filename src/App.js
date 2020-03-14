@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Tracker from "./shared/Tracker";
+import MoodTracker from "./shared/MoodTracker";
 
 function App() {
-  return <Tracker />;
+  return <MoodTracker />;
 }
 
 export default App;

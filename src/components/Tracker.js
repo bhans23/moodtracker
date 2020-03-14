@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MoodItem from "./MoodItem";
 import "../css/Tracker.css";
 
 const Tracker = () => {
@@ -28,7 +29,7 @@ const Tracker = () => {
       <div className="slideContainer">
         <h3>{moodValue}</h3>
 
-        <form submit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="range"
             min="1"
@@ -40,6 +41,11 @@ const Tracker = () => {
           />
           <button type="submit">submit</button>
         </form>
+        <div className="moodLists">
+          {moodList.map(moodObject => (
+            <MoodItem moodObject={moodObject} />
+          ))}
+        </div>
       </div>
     </div>
   );
