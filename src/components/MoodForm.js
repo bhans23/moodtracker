@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MoodForm = handleSubmit => {
+const MoodForm = ({ handleSubmit }) => {
   const [moodValue, setMoodValue] = useState(0);
   const handleChange = e => {
     setMoodValue(e.target.value);

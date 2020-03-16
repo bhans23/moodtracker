@@ -7,7 +7,6 @@ const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
   const handleSubmit = e => {
-    e.preventDefault();
     const { mood, date, time } = e;
     setMoodList(moodList => [
       ...moodList,
