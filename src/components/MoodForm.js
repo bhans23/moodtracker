@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
-const MoodForm = (props) => {
-  const { moodValue, handleChange, handleSubmit } = props;
+const MoodForm = handleSubmit => {
+  const [moodValue, setMoodValue] = useState(0);
+  const handleChange = e => {
+    setMoodValue(e.target.value);
+  };
+
+  const handleSubmitMoodForm = e => {
+    handleSubmit(e);
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="range"
-        min="1"
-        max="10"
-        value={moodValue}
-        className="slider"
-        onChange={handleChange}
-        id="myRange"
-      />
-      <button type="submit">submit</button>
-    </form>
+    <>
+      <h3>{moodValue}</h3>
+      <form onSubmit={handleSubmitMoodForm}>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={moodValue}
+          className="slider"
+          onChange={handleChange}
+          id="myRange"
+        />
+        <button type="submit">submit</button>
+      </form>
+    </>
   );
 };
 

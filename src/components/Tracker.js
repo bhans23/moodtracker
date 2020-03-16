@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import MoodItem from "./MoodItem";
-import MoodForm from './MoodForm';
+import MoodForm from "./MoodForm";
 import "../css/Tracker.css";
 
 const Tracker = () => {
-  const [moodValue, setMoodValue] = useState(0);
   const [moodList, setMoodList] = useState([]);
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { moodValue } = e.target.value;
     setMoodList(moodList => [
       ...moodList,
       {
@@ -19,21 +19,13 @@ const Tracker = () => {
     ]);
   };
 
-  const handleChange = e => {
-    setMoodValue(e.target.value);
-  };
-
   return (
     <div className="tracker">
       <h1>Mood Tracker 5000!</h1>
       <p>This is going to be the best mood tracker...maybe...perhaps</p>
       <div className="slideContainer">
-        <h3>{moodValue}</h3>
+        <MoodForm handleSubmit={handleSubmit} />
 
-        <MoodForm handleSubmit={handleSubmit} handleChange={handleChange} moodValue={moodValue}/>
-          
-      
-        
         <div className="moodLists">
           {moodList.map(moodObject => (
             <MoodItem moodObject={moodObject} />
