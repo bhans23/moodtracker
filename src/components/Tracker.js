@@ -8,13 +8,13 @@ const Tracker = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { moodValue } = e.target.value;
+    const { mood, date, time } = e;
     setMoodList(moodList => [
       ...moodList,
       {
-        mood: moodValue,
-        date: new Date().toLocaleDateString(),
-        time: new Date().toLocaleTimeString()
+        mood: mood,
+        date: date,
+        time: time
       }
     ]);
   };

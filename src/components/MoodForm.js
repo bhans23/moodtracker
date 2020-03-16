@@ -6,13 +6,19 @@ const MoodForm = handleSubmit => {
     setMoodValue(e.target.value);
   };
 
-  const handleSubmitMoodForm = e => {
-    handleSubmit(e);
-  };
   return (
     <>
       <h3>{moodValue}</h3>
-      <form onSubmit={handleSubmitMoodForm}>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          handleSubmit({
+            mood: moodValue,
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString()
+          });
+        }}
+      >
         <input
           type="range"
           min="1"
