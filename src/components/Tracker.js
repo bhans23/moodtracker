@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MoodItem from "./MoodItem";
+import MoodForm from './MoodForm';
 import "../css/Tracker.css";
 
 const Tracker = () => {
@@ -29,18 +30,10 @@ const Tracker = () => {
       <div className="slideContainer">
         <h3>{moodValue}</h3>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="range"
-            min="1"
-            max="10"
-            value={moodValue}
-            className="slider"
-            onChange={handleChange}
-            id="myRange"
-          />
-          <button type="submit">submit</button>
-        </form>
+        <MoodForm handleSubmit={handleSubmit} handleChange={handleChange} moodValue={moodValue}/>
+          
+      
+        
         <div className="moodLists">
           {moodList.map(moodObject => (
             <MoodItem moodObject={moodObject} />
