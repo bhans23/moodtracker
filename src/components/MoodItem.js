@@ -6,8 +6,10 @@ const MoodItem = ({ moodObject }) => {
   return (
     <div>
       <h1>Day: {date}</h1>
-      
-  <p>At: {time} , your mood was: {mood}</p>
+
+      <p>
+        At: {time} , your mood was: {mood}
+      </p>
     </div>
   );
 };
