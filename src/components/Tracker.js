@@ -6,16 +6,25 @@ import "../css/Tracker.css";
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
-  const handleSubmit = e => {
-    const { mood, date, time } = e;
+  const handleSubmit = moodObject => {
+    // const currentMoodObject = moodList.find(
+    //   moodObject => moodObject.date === new Date().toLocaleDateString()
+    // );
+    // console.log(currentMoodObject);
+    // if (moodObject.date === moodList.date) {
+    // } else {
+    // }
+
+    // const addMoodObject = () => {};
+
     setMoodList(moodList => [
       ...moodList,
+
       {
-        mood: mood,
-        date: date,
-        time: time
+        moodObject
       }
     ]);
+    
   };
 
   return (
@@ -26,8 +35,8 @@ const Tracker = () => {
         <MoodForm handleSubmit={handleSubmit} />
 
         <div className="moodLists">
-          {moodList.map(moodObject => (
-            <MoodItem moodObject={moodObject} />
+          {moodList.map((moodObject, k) => (
+            <MoodItem key={k} moodObject={moodObject} />
           ))}
         </div>
       </div>
@@ -36,3 +45,10 @@ const Tracker = () => {
 };
 
 export default Tracker;
+
+// const currentMoodObject = moodList.find(moodObject => moodObject.date === todaysDate);
+// if (currentMoodObject) {
+//   add a mood to an array on this currentMoodObject
+// } else {
+//   add a new moodObject to moodList
+// }

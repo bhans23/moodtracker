@@ -1,6 +1,7 @@
 import React from "react";
 
 const MoodItem = ({ moodObject }) => {
+  console.log(moodObject);
   const { mood, date, time } = moodObject;
 
   return (
