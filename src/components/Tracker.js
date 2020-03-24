@@ -7,8 +7,14 @@ const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
   const handleSubmit = moodObject => {
+    moodObject.moods = [];
+    moodObject.moods.mood = [moodObject.mood];
+    moodObject.date = new Date().toLocaleDateString();
+    moodObject.moods.time = new Date().toLocaleTimeString();
+
+    console.log(moodObject);
     
-    const getMoodObject = (currentMoodObject) => {
+    const getMoodObject = currentMoodObject => {
       if (
         moodList.find(
           moodObject => moodObject.date === new Date().toLocaleDateString()
@@ -29,15 +35,10 @@ const Tracker = () => {
         setMoodList(moodList => [...moodList, moodObject]);
       }
     };
- 
+
     getMoodObject(moodObject);
-    
-
-    
-
-    
   };
-  console.log(moodList)
+  
 
   return (
     <div className="tracker">

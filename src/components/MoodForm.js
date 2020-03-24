@@ -14,8 +14,7 @@ const MoodForm = ({ handleSubmit }) => {
           e.preventDefault();
           handleSubmit({
             mood: moodValue,
-            date: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString()
+            
           });
         }}
       >
