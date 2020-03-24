@@ -7,38 +7,29 @@ const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
   const handleSubmit = moodObject => {
-    moodObject.moods = [];
-    moodObject.moods.mood = [moodObject.mood];
-    moodObject.date = new Date().toLocaleDateString();
-    moodObject.moods.time = new Date().toLocaleTimeString();
+    const currentMoodObject = {};
 
-    console.log(moodObject);
-    
+    currentMoodObject.moods = [moodObject];
+    currentMoodObject.date = new Date().toLocaleDateString();
+    currentMoodObject.moods[0].time = new Date().toLocaleTimeString();
+
+    setMoodList(moodList => [...moodList, moodObject]);
+   
+
     const getMoodObject = currentMoodObject => {
-      if (
-        moodList.find(
-          moodObject => moodObject.date === new Date().toLocaleDateString()
-        ) !== undefined
-      ) {
-        currentMoodObject = moodList.find(
-          moodObject => moodObject.date === new Date().toLocaleDateString()
-        );
-      } else {
-        currentMoodObject = "";
-      }
-
-      if (currentMoodObject !== "") {
-        currentMoodObject.mood2 = moodObject.mood;
-        currentMoodObject.time2 = moodObject.time;
-        setMoodList(moodList => [...moodList, currentMoodObject]);
-      } else {
-        setMoodList(moodList => [...moodList, moodObject]);
-      }
+      const findSameDateObject = moodObject => {
+        return moodObject.date === new Date().toLocaleDateString();
+      };
+      const sameDateObject = moodList.find(findSameDateObject);
+      moodList.find(findSameDateObject)
+        ? (sameDateObject.moods[1] =
+            currentMoodObject &&
+            setMoodList(moodList => [...moodList, currentMoodObject]))
+        : setMoodList(moodList => [...moodList, currentMoodObject]);
     };
 
-    getMoodObject(moodObject);
+    getMoodObject(currentMoodObject);
   };
-  
 
   return (
     <div className="tracker">
