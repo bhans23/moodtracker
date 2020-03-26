@@ -3,33 +3,25 @@ import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import "../css/Tracker.css";
 
+
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
-  const handleSubmit = moodValue => {
-    // const MoodObject = {};
-
-    // MoodObject.moods = [moodValue];
-    // MoodObject.date = new Date().toLocaleDateString();
-    // MoodObject.moods[0].time = new Date().toLocaleTimeString();
+  const handleSubmit = moodItem => {
     setMoodList(moodList => {
       const moodObject = moodList.find(
-        dateObject => dateObject.date === new Date().toLocaleDateString()
+        moodObject => moodObject.date === new Date().toLocaleDateString()
       );
       if (moodObject) {
-        moodObject.moods = [moodValue];
-        moodObject.moods[0].time = new Date().toLocaleTimeString();
+        moodObject.moods = [moodItem, ...moodObject.moods]
+        // moodObject.moods.push(moodItem);
+        // moodObject.moods.unshift(moodItem);
+        return [...moodList];
       } else {
-        const newMoodObject = {};
-
-        newMoodObject.moods = [moodValue];
-        newMoodObject.date = new Date().toLocaleDateString();
-        newMoodObject.moods[0].time = new Date().toLocaleTimeString();
-
-        return [...moodList, newMoodObject];
+        return [...moodList, {moods: [moodItem], date: new Date().toLocaleDateString() }];
       }
     });
-  };
+  }
 
   return (
     <div className="tracker">
@@ -50,13 +42,3 @@ const Tracker = () => {
 
 export default Tracker;
 
-// const handleSubmit = moodValue => {
-//   setMoodList(moodList => {
-//     const moodObject = moodList.find(...);
-//     if (moodObject) {
-//       modify mood object
-//       return [...moodList]
-//     } else {
-//       return [...moodList, newMoodObject];
-//     }
-//   });
