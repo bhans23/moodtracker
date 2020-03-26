@@ -1,17 +1,21 @@
 import React from "react";
 
 const MoodItem = ({ moodObject }) => {
-  const { mood, date, time } = moodObject;
-
+  console.log(moodObject);
+  const { date, moods } = moodObject;
+  
   return (
     <div>
-      <h1>Day: {date}</h1>
-
-      <p>
-        At: {time} , your mood was: {mood}
-      </p>
+      <h1>Day: {date} </h1> 
+       {moods.map(moodItem => (
+        <div>
+          Your Mood was: {moodItem.mood} at: {moodItem.time}
+        </div>
+      ))}
     </div>
   );
 };
 
 export default MoodItem;
+
+
