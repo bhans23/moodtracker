@@ -5,10 +5,10 @@ const MoodItem = ({ moodObject }) => {
   
   return (
     <div>
-      <h1>Day:{date} </h1> */}
+      <h1>Day:{date} </h1> 
        {moods.map(moodTime => (
         <div>
-          Your Mood was:{moodTime.mood} at:{moodTime.time}
+          Your Mood was: {moodTime.mood} at: {moodTime.time}
         </div>
       ))}
     </div>

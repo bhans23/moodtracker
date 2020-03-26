@@ -6,29 +6,29 @@ import "../css/Tracker.css";
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
-  const handleSubmit = moodObject => {
-    const currentMoodObject = {};
+  const handleSubmit = moodValue => {
+    // const MoodObject = {};
 
-    currentMoodObject.moods = [moodObject];
-    currentMoodObject.date = new Date().toLocaleDateString();
-    currentMoodObject.moods[0].time = new Date().toLocaleTimeString();
+    // MoodObject.moods = [moodValue];
+    // MoodObject.date = new Date().toLocaleDateString();
+    // MoodObject.moods[0].time = new Date().toLocaleTimeString();
+    setMoodList(moodList => {
+      const moodObject = moodList.find(
+        dateObject => dateObject.date === new Date().toLocaleDateString()
+      );
+      if (moodObject) {
+        moodObject.moods = [moodValue];
+        moodObject.moods[0].time = new Date().toLocaleTimeString();
+      } else {
+        const newMoodObject = {};
 
-    setMoodList(moodList => [...moodList, moodObject]);
-   
+        newMoodObject.moods = [moodValue];
+        newMoodObject.date = new Date().toLocaleDateString();
+        newMoodObject.moods[0].time = new Date().toLocaleTimeString();
 
-    const getMoodObject = currentMoodObject => {
-      const findSameDateObject = moodObject => {
-        return moodObject.date === new Date().toLocaleDateString();
-      };
-      const sameDateObject = moodList.find(findSameDateObject);
-      moodList.find(findSameDateObject)
-        ? (sameDateObject.moods[1] =
-            currentMoodObject &&
-            setMoodList(moodList => [...moodList, currentMoodObject]))
-        : setMoodList(moodList => [...moodList, currentMoodObject]);
-    };
-
-    getMoodObject(currentMoodObject);
+        return [...moodList, newMoodObject];
+      }
+    });
   };
 
   return (
@@ -50,9 +50,13 @@ const Tracker = () => {
 
 export default Tracker;
 
-// const currentMoodObject = moodList.find(moodObject => moodObject.date === todaysDate);
-// if (currentMoodObject) {
-//   add a mood to an array on this currentMoodObject
-// } else {
-//   add a new moodObject to moodList
-// }
+// const handleSubmit = moodValue => {
+//   setMoodList(moodList => {
+//     const moodObject = moodList.find(...);
+//     if (moodObject) {
+//       modify mood object
+//       return [...moodList]
+//     } else {
+//       return [...moodList, newMoodObject];
+//     }
+//   });
