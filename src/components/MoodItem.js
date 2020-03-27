@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import MoodItemForm from "./MoodItemForm";
 
-const MoodItem = ({ moodObject }, { handleSubmit }) => {
-  const [edditToggle, setEditToggle] = useState(false);
+const MoodItem = ({ moodObject ,  handleSubmit }) => {
+  const [editToggle, setEditToggle] = useState(false);
   const { date, moods } = moodObject;
-
+ 
   const editMood = () => {
-    if (edditToggle === false) {
+    if (editToggle === false) {
       return (
         <div>
           <h1>Day: {date} </h1>
@@ -14,7 +14,7 @@ const MoodItem = ({ moodObject }, { handleSubmit }) => {
             <div>
               Your Mood was: {moodItem.mood} at: {moodItem.time}
               <button
-                onClick={toggle => (toggle = setEditToggle(!edditToggle))}
+                onClick={setEditToggle(true)}
               >
                 edit
               </button>
@@ -28,7 +28,7 @@ const MoodItem = ({ moodObject }, { handleSubmit }) => {
           <h1>Day: {date} </h1>
           {moods.map(moodItem => (
             <div>
-              <MoodItemForm moodItem={moodItem} handleSubmit={handleSubmit} />
+              <MoodItemForm moodItem={moodItem} handleSubmit={handleSubmit} setEditTogle={setEditToggle} />
             </div>
           ))}
         </div>

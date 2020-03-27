@@ -1,12 +1,12 @@
 import React from "react";
 
-const MoodItemForm = ({ moodItem }, { handleSubmit }) => {
+const MoodItemForm = props => {
+  const { moodItem, handleSubmit, setEditToggle } = props;
+
   return (
     <>
-      <form>
-        <label onSumbit={handleSubmit} for="mood">
-          Your Mood was:
-        </label>
+      <form onSumbit={handleSubmit}>
+        <label for="mood">Your Mood was:</label>
         <select id="mood">
           <option value={moodItem.mood}>{moodItem.mood}</option>
           <option value="1">1</option>
@@ -21,7 +21,9 @@ const MoodItemForm = ({ moodItem }, { handleSubmit }) => {
           <option value="10">10</option>
         </select>
         at: {moodItem.time}
-        <button type="submit">Submit</button>
+        <button onClick={setEditToggle(false)} type="submit">
+          Submit
+        </button>
       </form>
     </>
   );
