@@ -32,7 +32,7 @@ const Tracker = () => {
 
         <div className="moodLists">
           {moodList.map((moodObject, k) => (
-            <MoodItem key={k} moodObject={moodObject} />
+            <MoodItem key={k} moodObject={moodObject} handleSubmit={handleSubmit} />
           ))}
         </div>
       </div>

@@ -15,7 +15,6 @@ const MoodForm = ({ handleSubmit }) => {
           handleSubmit({
             mood: moodValue,
             time: new Date().toLocaleTimeString()
-            
           });
         }}
       >
@@ -35,5 +34,3 @@ const MoodForm = ({ handleSubmit }) => {
 };
 
 export default MoodForm;
-
-
