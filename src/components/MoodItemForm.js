@@ -21,7 +21,7 @@ const MoodItemForm = props => {
           <option value="10">10</option>
         </select>
         at: {moodItem.time}
-        <button onClick={setEditToggle(false)} type="submit">
+        <button onClick={toggle => (toggle = setEditToggle(false))} type="submit">
           Submit
         </button>
       </form>

@@ -5,7 +5,7 @@ const MoodItem = ({ moodObject ,  handleSubmit }) => {
   const [editToggle, setEditToggle] = useState(false);
   const { date, moods } = moodObject;
  
-  const editMood = () => {
+ 
     if (editToggle === false) {
       return (
         <div>
@@ -14,7 +14,7 @@ const MoodItem = ({ moodObject ,  handleSubmit }) => {
             <div>
               Your Mood was: {moodItem.mood} at: {moodItem.time}
               <button
-                onClick={setEditToggle(true)}
+                onClick={toggle => toggle = setEditToggle(true)}
               >
                 edit
               </button>
@@ -34,9 +34,7 @@ const MoodItem = ({ moodObject ,  handleSubmit }) => {
         </div>
       );
     }
-  };
-
-  return <>{editMood()}</>;
+ 
 };
 
 export default MoodItem;
