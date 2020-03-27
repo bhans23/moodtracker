@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MoodItemForm from "./MoodItemForm";
 
-const MoodItem = ({ moodObject },{handleSubmit}) => {
+const MoodItem = ({ moodObject }, { handleSubmit }) => {
   const [edditToggle, setEditToggle] = useState(false);
   const { date, moods } = moodObject;
 
@@ -18,7 +18,6 @@ const MoodItem = ({ moodObject },{handleSubmit}) => {
               >
                 edit
               </button>
-              
             </div>
           ))}
         </div>
@@ -29,8 +28,7 @@ const MoodItem = ({ moodObject },{handleSubmit}) => {
           <h1>Day: {date} </h1>
           {moods.map(moodItem => (
             <div>
-             <MoodItemForm moodItem={moodItem} handleSubmit={handleSubmit}/>
-              
+              <MoodItemForm moodItem={moodItem} handleSubmit={handleSubmit} />
             </div>
           ))}
         </div>

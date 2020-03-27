@@ -3,7 +3,6 @@ import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import "../css/Tracker.css";
 
-
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
@@ -13,15 +12,18 @@ const Tracker = () => {
         moodObject => moodObject.date === new Date().toLocaleDateString()
       );
       if (moodObject) {
-        moodObject.moods = [moodItem, ...moodObject.moods]
+        moodObject.moods = [moodItem, ...moodObject.moods];
         // moodObject.moods.push(moodItem);
         // moodObject.moods.unshift(moodItem);
         return [...moodList];
       } else {
-        return [...moodList, {moods: [moodItem], date: new Date().toLocaleDateString() }];
+        return [
+          ...moodList,
+          { moods: [moodItem], date: new Date().toLocaleDateString() }
+        ];
       }
     });
-  }
+  };
 
   return (
     <div className="tracker">
@@ -32,7 +34,11 @@ const Tracker = () => {
 
         <div className="moodLists">
           {moodList.map((moodObject, k) => (
-            <MoodItem key={k} moodObject={moodObject} handleSubmit={handleSubmit} />
+            <MoodItem
+              key={k}
+              moodObject={moodObject}
+              handleSubmit={handleSubmit}
+            />
           ))}
         </div>
       </div>
@@ -41,4 +47,3 @@ const Tracker = () => {
 };
 
 export default Tracker;
-
