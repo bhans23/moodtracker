@@ -5,10 +5,7 @@ import "../css/Tracker.css";
 
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
-  const handleUpdate = (moodItem) => {
-    
-
-  }
+  
   const handleSubmit = moodItem => {
     setMoodList(moodList => {
       const moodObject = moodList.find(
@@ -40,8 +37,7 @@ const Tracker = () => {
             <MoodItem
               key={k}
               moodObject={moodObject}
-            
-              handleUpdate={handleUpdate}
+              handleSubmit={handleSubmit}
             />
           ))}
         </div>
