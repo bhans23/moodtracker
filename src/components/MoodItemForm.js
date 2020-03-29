@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const MoodItemForm = props => {
-  const { moodItem, handleSubmit } = props;
+  const { moodItem, handleUpdate } = props;
   const [editToggle, setEditToggle] = useState(false);
 
   if (editToggle === false) {
@@ -15,7 +15,7 @@ const MoodItemForm = props => {
     return (
       <div>
         <>
-          <form onSumbit={handleSubmit}>
+          <form onSubmit={handleUpdate}>
             <label for="mood">Your Mood was:</label>
             <select id="mood">
               <option value={moodItem.mood}>{moodItem.mood}</option>
