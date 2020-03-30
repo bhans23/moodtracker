@@ -5,7 +5,7 @@ import "../css/Tracker.css";
 
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
-  
+
   const handleSubmit = moodItem => {
     setMoodList(moodList => {
       const moodObject = moodList.find(
@@ -13,8 +13,6 @@ const Tracker = () => {
       );
       if (moodObject) {
         moodObject.moods = [moodItem, ...moodObject.moods];
-        // moodObject.moods.push(moodItem);
-        // moodObject.moods.unshift(moodItem);
         return [...moodList];
       } else {
         return [

@@ -6,9 +6,12 @@ const MoodItemForm = props => {
   const [editToggle, setEditToggle] = useState(false);
 
   const handleUpdate = e => {
+    e.preventDefault();
     console.log(e);
     const moodObject = { date: date, moods: [e.target.value] };
+    setEditToggle(false);
     handleSubmit(moodObject);
+    
   };
 
   const handleChange = e => {
@@ -31,26 +34,15 @@ const MoodItemForm = props => {
               Your Mood was:
               <select id="mood" onChange={handleChange} value={moodUpdateValue}>
                 <option value={moodItem.mood}>{moodItem.mood}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                {Array(10)
+                  .fill(null)
+                  .map((_, x) => (
+                    <option value={x + 1}>{x + 1}</option>
+                  ))}
               </select>
               at: {moodItem.time}
             </label>
-
-            <button
-              onClick={toggle => (toggle = setEditToggle(false))}
-              type="submit"
-            >
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </form>
         </>
       </div>
