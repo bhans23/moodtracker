@@ -1,7 +1,7 @@
 import React from "react";
 import MoodItemForm from "./MoodItemForm";
 
-const MoodItem = ({ moodObject, handleSubmit }) => {
+const MoodItem = ({ moodObject, handleUpdate }) => {
   const { date, moods } = moodObject;
 
   return (
@@ -11,7 +11,7 @@ const MoodItem = ({ moodObject, handleSubmit }) => {
       {moods.map(moodItem => (
         <MoodItemForm
           moodItem={moodItem}
-          handleSubmit={handleSubmit}
+          handleUpdate={handleUpdate}
           date={date}
         />
       ))}

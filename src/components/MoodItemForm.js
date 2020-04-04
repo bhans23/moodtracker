@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
 const MoodItemForm = props => {
-  const { moodItem, handleSubmit, date } = props;
+  const { moodItem, handleUpdate, date } = props;
   const [moodUpdateValue, setMoodUpdateValue] = useState("");
   const [editToggle, setEditToggle] = useState(false);
 
-  const handleUpdate = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log(e);
     const moodObject = { date: date, moods: [e.target.value] };
-    setEditToggle(false);
-    handleSubmit(moodObject);
+    // setEditToggle(false);
+    handleUpdate(moodObject);
     
   };
+
 
   const handleChange = e => {
     setMoodUpdateValue(e.target.value);
@@ -29,7 +30,7 @@ const MoodItemForm = props => {
     return (
       <div>
         <>
-          <form onSubmit={handleUpdate}>
+          <form onSubmit={handleSubmit}>
             <label for="mood">
               Your Mood was:
               <select id="mood" onChange={handleChange} value={moodUpdateValue}>

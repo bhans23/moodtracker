@@ -6,10 +6,25 @@ import "../css/Tracker.css";
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
-  const handleSubmit = moodItem => {
-    setMoodList(moodList => {
+  const handleUpdate = (moodObject) => {
+    
+    const dateObject = moodList.find((moodDateObject) => {
+      moodDateObject.date === moodObject.date;
+    });
+    console.log(dateObject)
+
+    setMoodList((moodList) => {
+      dateObject.moods = dateObject.moods.map((moods) =>
+        moods.time === moodObject.time ? { ...moods, mood: moodObject } : moods
+      );
+      return [...moodList];
+    });
+  };
+
+  const handleSubmit = (moodItem) => {
+    setMoodList((moodList) => {
       const moodObject = moodList.find(
-        moodObject => moodObject.date === new Date().toLocaleDateString()
+        (moodObject) => moodObject.date === new Date().toLocaleDateString()
       );
       if (moodObject) {
         moodObject.moods = [moodItem, ...moodObject.moods];
@@ -17,7 +32,7 @@ const Tracker = () => {
       } else {
         return [
           ...moodList,
-          { moods: [moodItem], date: new Date().toLocaleDateString() }
+          { moods: [moodItem], date: new Date().toLocaleDateString() },
         ];
       }
     });
@@ -35,7 +50,7 @@ const Tracker = () => {
             <MoodItem
               key={k}
               moodObject={moodObject}
-              handleSubmit={handleSubmit}
+              handleUpdate={handleUpdate}
             />
           ))}
         </div>
