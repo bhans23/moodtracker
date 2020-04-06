@@ -8,7 +8,7 @@ const MoodItem = ({ moodObject, handleUpdate }) => {
     <div>
       <h1>Day: {date} </h1>
 
-      {moods.map(moodItem => (
+      {moods.map((moodItem) => (
         <MoodItemForm
           moodItem={moodItem}
           handleUpdate={handleUpdate}
@@ -20,6 +20,3 @@ const MoodItem = ({ moodObject, handleUpdate }) => {
 };
 
 export default MoodItem;
-
-
-

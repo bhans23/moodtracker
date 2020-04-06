@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-const MoodItemForm = props => {
+const MoodItemForm = (props) => {
   const { moodItem, handleUpdate, date } = props;
   const [moodUpdateValue, setMoodUpdateValue] = useState("");
   const [editToggle, setEditToggle] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const moodObject = { date: date, moods: [{mood: moodUpdateValue, time: moodItem.time}] };
+    const moodObject = {
+      date: date,
+      moods: [{ mood: moodUpdateValue, time: moodItem.time }],
+    };
     handleUpdate(moodObject);
     setEditToggle(false);
-    
   };
 
-
-  const handleChange = e => {
-    
+  const handleChange = (e) => {
     setMoodUpdateValue(e.target.value);
   };
 
@@ -23,7 +23,9 @@ const MoodItemForm = props => {
     return (
       <div>
         Your Mood was: {moodItem.mood} at: {moodItem.time}
-        <button onClick={toggle => (toggle = setEditToggle(true))}>edit</button>
+        <button onClick={(toggle) => (toggle = setEditToggle(true))}>
+          edit
+        </button>
       </div>
     );
   } else {
