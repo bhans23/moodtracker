@@ -1,21 +1,22 @@
 import React from "react";
+import MoodItemForm from "./MoodItemForm";
 
-const MoodItem = ({ moodObject }) => {
-  console.log(moodObject);
+const MoodItem = ({ moodObject, handleUpdate }) => {
   const { date, moods } = moodObject;
-  
+
   return (
     <div>
-      <h1>Day: {date} </h1> 
-       {moods.map(moodItem => (
-        <div>
-          Your Mood was: {moodItem.mood} at: {moodItem.time}
-        </div>
+      <h1>Day: {date} </h1>
+
+      {moods.map((moodItem) => (
+        <MoodItemForm
+          moodItem={moodItem}
+          handleUpdate={handleUpdate}
+          date={date}
+        />
       ))}
     </div>
   );
 };
 
 export default MoodItem;
-
-

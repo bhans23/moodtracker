@@ -3,25 +3,42 @@ import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import "../css/Tracker.css";
 
-
 const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
-  const handleSubmit = moodItem => {
-    setMoodList(moodList => {
+  const handleUpdate = (moodObject) => {
+    const dateObject = moodList.find(
+      (moodDateObject) => moodDateObject.date === moodObject.date
+    );
+
+    setMoodList((moodList) => {
+      console.log(moodObject.mood);
+      dateObject.moods = dateObject.moods.map((moods) =>
+        moods.time === moodObject.moods[0].time
+          ? { time: moods.time, mood: moodObject.moods[0].mood }
+          : { ...moods }
+      );
+      
+      return [...moodList];
+    });
+  };
+
+  const handleSubmit = (moodItem) => {
+    setMoodList((moodList) => {
       const moodObject = moodList.find(
-        moodObject => moodObject.date === new Date().toLocaleDateString()
+        (moodObject) => moodObject.date === new Date().toLocaleDateString()
       );
       if (moodObject) {
-        moodObject.moods = [moodItem, ...moodObject.moods]
-        // moodObject.moods.push(moodItem);
-        // moodObject.moods.unshift(moodItem);
+        moodObject.moods = [moodItem, ...moodObject.moods];
         return [...moodList];
       } else {
-        return [...moodList, {moods: [moodItem], date: new Date().toLocaleDateString() }];
+        return [
+          ...moodList,
+          { moods: [moodItem], date: new Date().toLocaleDateString() },
+        ];
       }
     });
-  }
+  };
 
   return (
     <div className="tracker">
@@ -32,7 +49,11 @@ const Tracker = () => {
 
         <div className="moodLists">
           {moodList.map((moodObject, k) => (
-            <MoodItem key={k} moodObject={moodObject} />
+            <MoodItem
+              key={k}
+              moodObject={moodObject}
+              handleUpdate={handleUpdate}
+            />
           ))}
         </div>
       </div>
@@ -41,4 +62,3 @@ const Tracker = () => {
 };
 
 export default Tracker;
-

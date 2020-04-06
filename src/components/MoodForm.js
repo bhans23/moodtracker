@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const MoodForm = ({ handleSubmit }) => {
   const [moodValue, setMoodValue] = useState(0);
-  const handleChange = e => {
+  const handleChange = (e) => {
     setMoodValue(e.target.value);
   };
 
@@ -10,12 +10,11 @@ const MoodForm = ({ handleSubmit }) => {
     <>
       <h3>{moodValue}</h3>
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           handleSubmit({
             mood: moodValue,
-            time: new Date().toLocaleTimeString()
-            
+            time: new Date().toLocaleTimeString(),
           });
         }}
       >
@@ -35,5 +34,3 @@ const MoodForm = ({ handleSubmit }) => {
 };
 
 export default MoodForm;
-
-
