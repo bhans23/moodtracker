@@ -14,9 +14,11 @@ const Tracker = () => {
     console.log(dateObject);
 
     setMoodList((moodList) => {
+      console.log(moodObject.mood)
       dateObject.moods = dateObject.moods.map((moods) =>
-        moods.time === moodObject.time ? { ...moods, mood: moodObject } : {...moods}
+        moods.time === moodObject.moods[0].time ? { time: moods.time, mood: moodObject.moods[0].mood } : {...moods}
       );
+      console.log(dateObject);
       return [...moodList];
     });
   };
