@@ -7,15 +7,15 @@ const Tracker = () => {
   const [moodList, setMoodList] = useState([]);
 
   const handleUpdate = (moodObject) => {
-    
-    const dateObject = moodList.find((moodDateObject) => {
-      moodDateObject.date === moodObject.date;
-    });
-    console.log(dateObject)
+    console.log(moodObject)
+    const dateObject = moodList.find(
+      (moodDateObject) => moodDateObject.date === moodObject.date
+    );
+    console.log(dateObject);
 
     setMoodList((moodList) => {
       dateObject.moods = dateObject.moods.map((moods) =>
-        moods.time === moodObject.time ? { ...moods, mood: moodObject } : moods
+        moods.time === moodObject.time ? { ...moods, mood: moodObject } : {...moods}
       );
       return [...moodList];
     });

@@ -7,15 +7,15 @@ const MoodItemForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
-    const moodObject = { date: date, moods: [e.target.value] };
-    // setEditToggle(false);
+    const moodObject = { date: date, moods: [{mood: moodUpdateValue}] };
     handleUpdate(moodObject);
+    setEditToggle(false);
     
   };
 
 
   const handleChange = e => {
+    
     setMoodUpdateValue(e.target.value);
   };
 
