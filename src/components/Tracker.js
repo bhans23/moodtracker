@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
+import MoodGraph from "./MoodGraph";
 import "../css/Tracker.css";
 
 const Tracker = () => {
@@ -12,13 +13,12 @@ const Tracker = () => {
     );
 
     setMoodList((moodList) => {
-      console.log(moodObject.mood);
       dateObject.moods = dateObject.moods.map((moods) =>
         moods.time === moodObject.moods[0].time
           ? { time: moods.time, mood: moodObject.moods[0].mood }
           : { ...moods }
       );
-      
+
       return [...moodList];
     });
   };
@@ -41,23 +41,28 @@ const Tracker = () => {
   };
 
   return (
-    <div className="tracker">
-      <h1>Mood Tracker 5000!</h1>
-      <p>This is going to be the best mood tracker...maybe...perhaps</p>
-      <div className="slideContainer">
-        <MoodForm handleSubmit={handleSubmit} />
+    <>
+      <div className="tracker">
+        <h1>Mood Tracker 5000!</h1>
+        <p>This is going to be the best mood tracker...maybe...perhaps</p>
+        <div className="slideContainer">
+          <MoodForm handleSubmit={handleSubmit} />
 
-        <div className="moodLists">
-          {moodList.map((moodObject, k) => (
-            <MoodItem
-              key={k}
-              moodObject={moodObject}
-              handleUpdate={handleUpdate}
-            />
-          ))}
+          <div className="moodLists">
+            {moodList.map((moodObject, k) => (
+              <MoodItem
+                key={k}
+                moodObject={moodObject}
+                handleUpdate={handleUpdate}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <div>
+        <MoodGraph moodList={moodList} />
+      </div>
+    </>
   );
 };
 

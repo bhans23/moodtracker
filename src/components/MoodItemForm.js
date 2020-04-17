@@ -22,7 +22,7 @@ const MoodItemForm = (props) => {
   if (editToggle === false) {
     return (
       <div>
-        Your Mood was: {moodItem.mood} at: {moodItem.time}
+        Your Mood was: {moodItem.mood} at: {moodItem.time.toLocaleTimeString()}
         <button onClick={(toggle) => (toggle = setEditToggle(true))}>
           edit
         </button>
@@ -43,7 +43,7 @@ const MoodItemForm = (props) => {
                     <option value={x + 1}>{x + 1}</option>
                   ))}
               </select>
-              at: {moodItem.time}
+              at: {moodItem.time.toLocaleTimeString()}
             </label>
             <button type="submit">Submit</button>
           </form>
