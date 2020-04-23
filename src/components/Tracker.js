@@ -58,9 +58,9 @@ const Tracker = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div>
-        <MoodGraph moodList={moodList} />
+        <div>
+          <MoodGraph moodList={moodList} />
+        </div>
       </div>
     </>
   );
