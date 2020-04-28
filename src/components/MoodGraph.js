@@ -62,12 +62,12 @@ const MoodGraph = ({ moodList }) => {
       .text(yData);
       yAxis.call(d3.axisLeft(y));
 
-    setMountUpdate({ path, x, y, xAxis, yAxis, yData }); // once
+    setMountUpdate({ path, x, y, xAxis, yAxis }); // once
   }, []);
 
   useEffect(() => {
     if (mountUpdate) {
-      const { path, x, y, xAxis, yAxis, yData } = mountUpdate;
+      const { path, x, y, xAxis, yAxis} = mountUpdate;
       x.domain(d3.extent(moodsData, (d) => d.time));
       y.domain([0,10]);
       // update
