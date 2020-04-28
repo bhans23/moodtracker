@@ -59,7 +59,6 @@ const MoodGraph = ({ moodList }) => {
    const yAxis = d3.select(svg.current)
       .append("g")
       .attr("transform", "translate(15, 0)")
-      .text(yData);
       yAxis.call(d3.axisLeft(y));
 
     setMountUpdate({ path, x, y, xAxis, yAxis }); // once
