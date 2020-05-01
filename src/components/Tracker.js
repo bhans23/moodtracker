@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import MoodGraph from "./MoodGraph";
 import "../css/Tracker.css";
 
 const Tracker = () => {
-  const [moodList, setMoodList] = useState([
-    {
-      moods: [
-        { mood: 3, time: new Date("July 21, 2020 01:15:00") },
-        { mood: 6, time: new Date("July 21, 2020 03:15:00") },
-        { mood: 10, time: new Date("July 21, 2020 03:15:00") },
-      ],
-      date: "4/26/2020",
-    },
-  ]);
-  console.log(moodList);
+  const [moodList, setMoodList] = useState([]);
+  
+
+  useEffect(() => {
+    axios.get('/api/moods').then(res => res.data).then(setMoodList);
+  }, [])
 
   const handleUpdate = (moodObject) => {
     const dateObject = moodList.find(
@@ -53,7 +49,7 @@ const Tracker = () => {
   return (
     <>
       <div className="tracker">
-        <h1>Mood Tracker 5000!</h1>
+  <h1>Mood Tracker 5000 !</h1>
         <p>This is going to be the best mood tracker...maybe...perhaps</p>
         <div className="slideContainer">
           <MoodForm handleSubmit={handleSubmit} />
