@@ -22,6 +22,7 @@ const MoodItemForm = (props) => {
   if (editToggle === false) {
     return (
       <div>
+        {console.log(moodItem)}
         Your Mood was: {moodItem.mood} at: {moodItem.time.toLocaleTimeString()}
         <button onClick={(toggle) => (toggle = setEditToggle(true))}>
           edit
