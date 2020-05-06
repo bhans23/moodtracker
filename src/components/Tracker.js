@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+
 import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import MoodGraph from "./MoodGraph";
 import "../css/Tracker.css";
+import useMoodList from '../services/useMoodList'
+
+
 
 const Tracker = () => {
-  const [moodList, setMoodList] = useState([
-    {
-      moods: [
-        { mood: 3, time: new Date("July 21, 2020 01:15:00") },
-        { mood: 6, time: new Date("July 21, 2020 03:15:00") },
-        { mood: 10, time: new Date("July 21, 2020 03:15:00") },
-      ],
-      date: "4/26/2020",
-    },
-  ]);
-  console.log(moodList);
+  
+  const {moodList, setMoodList} = useMoodList();
 
   const handleUpdate = (moodObject) => {
     const dateObject = moodList.find(
@@ -53,7 +48,7 @@ const Tracker = () => {
   return (
     <>
       <div className="tracker">
-        <h1>Mood Tracker 5000!</h1>
+        <h1>Mood Tracker 5000 !</h1>
         <p>This is going to be the best mood tracker...maybe...perhaps</p>
         <div className="slideContainer">
           <MoodForm handleSubmit={handleSubmit} />
@@ -77,3 +72,38 @@ const Tracker = () => {
 };
 
 export default Tracker;
+
+// import React, { useState, useEffect } from "react";
+
+// const App = () => {
+//   const [moodList, setMoodList] = useState([
+//     {
+//       moods: [
+//         { mood: 3, time: "2020-04-26T07:15:00.000Z" },
+//         { mood: 6, time: "2020-04-26T07:20:00.000Z" },
+//         { mood: 10, time: "2020-04-26T07:35:00.000Z" },
+//       ],
+//       date: "4/26/2020",
+//     },
+//   ]);
+//   console.log(moodList);
+
+//   useEffect(() => {
+// const x = [{ a: 1, b: 3 }, { a: 2, b: 4}, { a: 3, b: 5}];
+
+// x.map(obj => ({ ...obj })); // [{ a: 1, b: 3 }, { a: 2, b: 4}, { a: 3, b: 5}];
+// x.map(obj => ({ ...obj, a: 5 })); // [{ a: 5, b: 3 }, { a: 5, b: 4}, { a: 5, b: 5}];
+// x.map(obj => obj.a = 5); // [5, 5, 5]
+// x.map(obj => obj.a = 5); // [5, 5, 5]
+//     moodList.map(moodObject => ({... moodObject}, moodObject.moods.map(moodObject => moodObject.time = new Date(moodObject.time))))
+//   console.log(moodList);
+//   })
+
+//   return (
+//     <>
+//       <h1>THe Page</h1>
+//     </>
+//   );
+// };
+
+// export default App;
