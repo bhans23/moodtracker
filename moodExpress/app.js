@@ -6,21 +6,37 @@ const port = 3001;
 
 const proxy = proxyMiddleware("http://localhost:3000");
 
+let moodData = [
+  {
+    moods: [
+      { mood: 3, time: new Date("April 26, 2020 01:15:00") },
+      { mood: 6, time: new Date("April 26, 2020 03:15:00") },
+      { mood: 10, time: new Date("April 26, 2020 03:15:00") },
+    ],
+    date: "4/26/2020",
+  },
+];
+
+app.use(express.json());
+
 // [http://localhost:3001/api/moods]
-app.get("/api/moods", (request, res) =>
-  res.json(
-   [
-      {
-        moods: [
-          { mood: 3, time: new Date("April 26, 2020 01:15:00") },
-          { mood: 6, time: new Date("April 26, 2020 03:15:00") },
-          { mood: 10, time: new Date("April 26, 2020 03:15:00") },
-        ],
-        date: "4/26/2020",
-      },
-    ]
-  )
-);
+app.get("/api/moods", (req, res) => res.json(moodData));
+
+app.post("/api/moods", (req, res) => {
+  const data = req.body;
+  const moodDateObject = moodData.find(
+    (moodObject) => moodObject.date === data.date
+  );
+
+  if (moodDateObject) {
+    moodDateObject.moods = {...moodDateObject.moods, ...data.moods};
+    moodData = [...moodData];
+    res.end();
+  } else {
+    moodData = [...moodData, data];
+    res.end();
+  }
+});
 
 app.use("/", proxy);
 
