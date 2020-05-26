@@ -3,38 +3,15 @@ import React from "react";
 import MoodItem from "./MoodItem";
 import MoodForm from "./MoodForm";
 import MoodGraph from "./MoodGraph";
-import axios from 'axios';
+import axios from "axios";
 import "../css/Tracker.css";
-import useMoodList from '../services/useMoodList'
-
-
+import useMoodList from "../services/useMoodList";
 
 const Tracker = () => {
-  
-  const {moodList, setMoodList} = useMoodList();
+  const { moodList, createMood } = useMoodList();
 
-  const postMoodObjects = (moodList) => {
-    axios.post("/api/moods", { moodList });
-  };
-  
   const handleSubmit = (moodItem) => {
-    
-    setMoodList((moodList) => {
-      const moodObject = moodList.find(
-        (moodObject) => moodObject.date === new Date().toLocaleDateString()
-      );
-      if (moodObject) {
-        moodObject.moods = [moodItem, ...moodObject.moods];
-        return [...moodList];
-      } else {
-        return [
-          ...moodList,
-          { moods: [moodItem], date: new Date().toLocaleDateString() },
-        ];
-      }
-    });
-
-    postMoodObjects(moodList)
+    createMood(moodItem)
   };
 
   const handleUpdate = (moodObject) => {
@@ -52,8 +29,6 @@ const Tracker = () => {
       return [...moodList];
     });
   };
-
-  
 
   return (
     <>

@@ -13,8 +13,7 @@ const MoodForm = ({ handleSubmit }) => {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit({
-            mood: moodValue,
-            time: new Date(),
+            mood: moodValue, 
           });
         }}
       >

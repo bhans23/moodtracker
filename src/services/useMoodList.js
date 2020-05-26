@@ -18,14 +18,17 @@ const getMoodObjects = () =>
 
 
 const useMoodList = () => {
-  const [moodList, setMoodList] = useState([]);
+  const [moodList, setMoodList] = useState([]); 
+  const createMood = (moodItem) =>{
+    axios.post("/api/moods", moodItem).then(getMoodObjects).then(setMoodList);
+  }
 
   useEffect(() => {
     
     getMoodObjects().then(setMoodList);
   }, []);
 
-  return { moodList, setMoodList };
+  return { moodList, createMood };
 };
 
 export default useMoodList;

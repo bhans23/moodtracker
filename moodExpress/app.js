@@ -23,20 +23,28 @@ app.use(express.json());
 app.get("/api/moods", (req, res) => res.json(moodData));
 
 app.post("/api/moods", (req, res) => {
-  const data = req.body;
-  const moodDateObject = moodData.find(
-    (moodObject) => moodObject.date === data.date
+  const moodItem = req.body;
+  const moodObject = moodData.find(
+    (moodObject) => moodObject.date === new Date().toLocaleDateString()
   );
 
-  if (moodDateObject) {
-    moodDateObject.moods = {...moodDateObject.moods, ...data.moods};
-    moodData = [...moodData];
-    res.end();
+  if (moodObject) {
+    moodObject.moods = [...moodObject.moods, { ...moodItem, time: new Date() }];
   } else {
-    moodData = [...moodData, data];
-    res.end();
+    moodData = [
+      ...moodData,
+      {
+        date: new Date().toLocaleDateString(),
+        moods: [{ ...moodItem, time: new Date() }],
+      },
+    ];
   }
+  res.end();
 });
+
+app.put()
+
+app.delete()
 
 app.use("/", proxy);
 
